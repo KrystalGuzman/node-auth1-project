@@ -2,7 +2,6 @@ const express = require("express");
 const cors = require("cors");
 const session = require("express-session");
 
-const usersRouter = require("../users/users-router.js");
 const authRouter = require("../auth/auth-router.js");
 const restricted = require("../auth/restricted-middleware.js")
 
@@ -22,15 +21,16 @@ const sessionConfig = {
   saveUninitialized: true, //GDPR laws require to check with client
 }
 const serverConfig = {
-  credentials: false
+  origin: "http://localhost:3000",
+  credentials: true
 }
 
 server.use(express.json());
 server.use(cors(serverConfig));
 server.use(session(sessionConfig));
-
-server.use("/api/users", restricted, usersRouter);
+server.get('/api/users', restricted)
 server.use("/api", authRouter);
+
 
 server.get("/", (req, res) => {
   res.json({ api: "up" });

@@ -7,7 +7,7 @@ const Signup = ({ isLoggedIn, setIsLoggedIn }) => {
 	const handleSubmit = (event) => {
 		event.preventDefault();
 		axios
-			.post('http://localhost:5000/api/signup', userInput)
+			.post('http://localhost:5000/api/register', userInput)
 			.then((response) => {
 				console.log('Signup response:', response);
 

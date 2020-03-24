@@ -18,11 +18,15 @@ const UserList = ({ isLoggedIn, setIsLoggedIn }) => {
 		[ isLoggedIn ]
 	);
 
-	return isLoggedIn ? (
+	return (
+		<div>
+		{isLoggedIn ? (
 		<div className="userList">{allUsers.map((user) => <p key={user.id}>{user.username}</p>)}</div>
 	) : (
 		<p>You need to be logged in to see all the registered users.</p>
-	);
+	)}
+	</div>
+		)
 };
 
 export default UserList;
